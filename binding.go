@@ -387,7 +387,7 @@ func validate(errs Errors, req *http.Request, userStruct FieldMapper) Errors {
 	}
 
 	if validator, ok := userStruct.(Validator); ok {
-		err := validator.Validate(req)
+		err := validator.Validate()
 		if err != nil {
 			switch e := err.(type) {
 			case Error:
@@ -827,7 +827,7 @@ type (
 		// in your application. For example, you might verify that a credit
 		// card number matches a valid pattern, but you probably wouldn't
 		// perform an actual credit card authorization here.
-		Validate(*http.Request) error
+		Validate() error
 	}
 )
 
